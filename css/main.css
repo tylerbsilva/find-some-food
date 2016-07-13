@@ -1,0 +1,103 @@
+*, *:before, *:after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: "Fira Sans", sans-serif;
+	background-color: #EEE;
+	font-size: 16px;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-family: "Kaushan Script", cursive;
+}
+header {
+	background-color: #FFF;
+	padding: 1em;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	z-index: 1000;
+	margin-bottom: 0.25em;
+	text-align: center;
+}
+header h1 {
+	font-size: 3em;
+	margin-bottom: 0.25em;
+}
+input#placesSearch {
+		width: 100%;
+		max-width: 400px;
+    padding: 0.5em;
+    font-size: 1.25em;
+    outline: none;
+    border: 1px solid #ddd;
+    color: #ee8a20;
+    background-color: #fff;
+		border-radius: 2px;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #67babe
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #67babe;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #67babe;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #67babe;
+}
+.submit-btn {
+	padding:0.5em 1em;
+	border:none;
+	outline:none;
+	background-color:#ee8a20;
+	color: #FFF;
+	font-size:1.25em;
+	border-radius: 2px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	transition: 0.2s all ease-in-out;
+	cursor: pointer;
+}
+.submit-btn:hover {
+	top: -2px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+
+#placesOutput {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	list-style: none;
+}
+.place {
+	width: 98%;
+	margin: 1%;
+	min-height:200px;
+	background-color: #FFF;
+	padding: 1em;
+	flex-grow: 1;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	transition: .25s all ease-in-out;
+}
+.place:hover {
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+@media all and (min-width: 600px) {
+	.place {
+		width: 48%;
+	}
+}
+@media all and (min-width: 1050px) {
+	.place {
+		width: 31.333333%;
+	}
+}
+@media all and (min-width: 1500px) {
+	.place {
+		width: 23%;
+	}
+}
