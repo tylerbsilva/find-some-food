@@ -4,8 +4,8 @@
 var Templater = function(html){
   return function(data){
     for(var x in data){
-      var re = "{{\\s?" + x + "\\s?}}";
-      html = html.replace(new RegExp(re, "ig"), data[x]);
+				var re = "{{\\s?" + x + "\\s?}}";
+				html = html.replace(new RegExp(re, "ig"), data[x]);
     }
     return html;
   };
@@ -29,6 +29,7 @@ function App(){
 				var outputEl = document.getElementById(outputID);
 				outputEl.innerHTML = ""
 				for(var x in data){
+					data[x].isOpen = data[x].opening_hours.open_now;
 					outputEl.innerHTML += Place(data[x]).loadHTML();
 				}
 			});
@@ -45,6 +46,7 @@ function App(){
 						var outputEl = document.getElementById(outputID);
 						outputEl.innerHTML = ""
 						for(var x in data){
+							data[x].isOpen = data[x].opening_hours.open_now;
 							outputEl.innerHTML += Place(data[x]).loadHTML();
 						}
 					});
@@ -84,7 +86,7 @@ function Place(data){
 	}; // END GET DATA
 
 	function loadHTML(){
-		var template = Templater("<li class=\"place\"><h1>{{ name }}</h1><a href=\"https://www.google.com/maps/place/{{ vicinity }}\" target=\"_blank\">{{ vicinity }}</a><p>RATING: {{ rating }}</p></li>");
+		var template = Templater("<li class=\"place\"><h1>{{ name }}</h1><a href=\"https://www.google.com/maps/place/{{ name }},{{ vicinity }}\" target=\"_blank\">{{ vicinity }}</a><div class=\"flex-row\"><div class=\"fifty\"><p class=\"rating\">RATING: <span class=\"rate\">{{ rating }}/5</span></p></div><div class=\"fifty\"><span class=\"open-{{ isOpen }}\"></span></div></div></li>");
 		return template(DATA);
 	}; // END LOAD HTML
 	return {

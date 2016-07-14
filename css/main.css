@@ -14,6 +14,14 @@ body {
 h1,h2,h3,h4,h5,h6 {
 	font-family: "Kaushan Script", cursive;
 }
+a {
+	color: #67babe;
+	text-decoration: none;
+}
+a:hover, a:focus {
+	color: #67babe;
+	text-decoration: underline;
+}
 header {
 	background-color: #FFF;
 	padding: 1em;
@@ -99,6 +107,54 @@ input#placesSearch {
 .place:hover {
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
+.place a {
+	display:block;
+}
+.flex-row {
+	margin-top:0.5em;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-around;
+}
+.fifty {
+}
+.place .rating {
+	width: 100%;
+	text-align: center;
+	margin-top: 0.5em;
+}
+.place .rate {
+	display:block;
+	font-size: 2.0em;
+	font-family: "Kaushan Script",cursive;
+}
+
+.place .open-true,
+.place .open-false {
+	display:inline-block;
+	position:relative;
+}
+.place .open-true:after {
+	position: relative;
+	top: 1em;
+	left: 0;
+	color: #FFF;
+	padding: 0.5em 1em;
+	content: "OPEN";
+	background-color: #81C784;
+}
+.place .open-false:after {
+	position: relative;
+	top: 1em;
+	left: 0;
+	color: #FFF;
+	padding: 0.5em 1em;
+	content: "CLOSED";
+	background-color: #E57373;
+}
+
 @media all and (min-width: 600px) {
 	.place {
 		width: 48%;
