@@ -4,9 +4,12 @@
 	padding: 0;
 }
 body {
-	font-family: "Fira Sans", sans-serif;
+	font-family: "Lato", "Helvetica", sans-serif;
 	background-color: #EEE;
 	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #333;
 }
 h1,h2,h3,h4,h5,h6 {
 	font-family: "Kaushan Script", cursive;
@@ -23,6 +26,16 @@ header h1 {
 	font-size: 3em;
 	margin-bottom: 0.25em;
 }
+
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+}
+
 input#placesSearch {
 		width: 100%;
 		max-width: 400px;
@@ -35,16 +48,16 @@ input#placesSearch {
 		border-radius: 2px;
 }
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #67babe
+  color: rgba(238,138,32, 0.5);
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: #67babe;
+  color: rgba(238,138,32, 0.5);
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: #67babe;
+  color: rgba(238,138,32, 0.5);
 }
 :-moz-placeholder { /* Firefox 18- */
-  color: #67babe;
+  color: rgba(238,138,32, 0.5);
 }
 .submit-btn {
 	padding:0.5em 1em;
