@@ -16,6 +16,8 @@ function App(){
 	// SET DEFAULT LOCATION TO SF
 	var CURRENT_LOCATION = new google.maps.LatLng(37.7749, -122.4194);
 	var CURRENT_DATA, MAP;
+	var LOADING = false;
+	var LOADING_DIV = document.getElementById('loading');
 	// INITIALIZE FUNCTION, TAKES THE 3 IDS THAT WILL HANDLE INPUT AND OUTPUT
 	function init(formID, searchID, mapID, outputID, locationID){
 		setupMap(mapID);
@@ -23,13 +25,14 @@ function App(){
 		document.getElementById(formID).addEventListener('submit', function(e){
 			e.preventDefault();
 			var input = document.getElementById(searchID).value;
+			var outputEl = document.getElementById(outputID);
+			outputEl.innerHTML = "";
+			LOADING_DIV.className = "loading-" + true;
 			SearchForm().handleSubmit(input, MAP, function(data, status, location){
 				CURRENT_LOCATION = location;
 				CURRENT_DATA = data;
-				var outputEl = document.getElementById(outputID);
-				outputEl.innerHTML = ""
+				LOADING_DIV.className = "loading-" + false;
 				for(var x in data){
-					data[x].isOpen = data[x].opening_hours.open_now;
 					outputEl.innerHTML += Place(data[x]).loadHTML();
 				}
 			});
@@ -37,24 +40,27 @@ function App(){
 		// SETUP GEOLOCATION
 		document.getElementById(locationID).addEventListener('click', function(e){
 			e.preventDefault()
+			var outputEl = document.getElementById(outputID);
+			outputEl.innerHTML = "";
+			LOADING_DIV.className = "loading-" + true;
 			//CHECK IF GEOLOCATION IS AVAILABLE
 			if ("geolocation" in navigator) {
 				navigator.geolocation.getCurrentPosition(function(position) {
 					CURRENT_LOCATION = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 					SearchForm().handleSubmit(CURRENT_LOCATION, MAP, function(data, status, location){
 						CURRENT_DATA = data;
-						var outputEl = document.getElementById(outputID);
-						outputEl.innerHTML = ""
+						LOADING_DIV.className = "loading-" + false;
 						for(var x in data){
-							data[x].isOpen = data[x].opening_hours.open_now;
 							outputEl.innerHTML += Place(data[x]).loadHTML();
 						}
 					});
 				});
 			} else {
+				LOADING_DIV.className = "loading-" + false;
 				alert("Sorry, using geolocation isn't available in your browser");
 			}
 		});
+		LOADING_DIV.className = "loading-" + LOADING;
 	}; // END INIT
 	function setupMap(mapID){
 		MAP = new google.maps.Map(document.getElementById(mapID), {
@@ -80,7 +86,7 @@ function App(){
 function Place(data){
 	if(!data) throw Error("No data for Place constructor");
 	var DATA = data;
-
+	DATA.isOpen = data.opening_hours !== undefined ? data.opening_hours.open_now : false;
 	function getData(){
 		return DATA;
 	}; // END GET DATA

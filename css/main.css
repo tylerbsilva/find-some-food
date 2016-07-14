@@ -170,3 +170,60 @@ input#placesSearch {
 		width: 23%;
 	}
 }
+
+.loading-true {
+  display: block;
+  height: auto;
+  padding: 20% 50%;
+}
+
+.loading-false {
+  display: none;
+  height: 0;
+}
+
+@-webkit-keyframes pulse {
+  50% {
+    background: #67babe;
+  }
+}
+@keyframes pulse {
+  50% {
+    background: #67babe;
+  }
+}
+.loading-pulse {
+  position: relative;
+  width: 6px;
+  height: 24px;
+  background: #aedadd;
+  -webkit-animation: pulse 750ms infinite;
+  animation: pulse 750ms infinite;
+  -webkit-animation-delay: 250ms;
+  animation-delay: 250ms;
+}
+
+.loading-pulse:before,
+.loading-pulse:after {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 16px;
+  width: 6px;
+  background: #aedadd;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-animation: pulse 750ms infinite;
+  animation: pulse 750ms infinite;
+}
+
+.loading-pulse:before {
+  left: -12px;
+}
+
+.loading-pulse:after {
+  left: 12px;
+  -webkit-animation-delay: 500ms;
+  animation-delay: 500ms;
+}
