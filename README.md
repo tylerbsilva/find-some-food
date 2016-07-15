@@ -1,4 +1,4 @@
-# Finding Food
+# Find Some Food
 
 A simple vanilla javascript application to find restaurants in your area using the browser's geolocation or an address typed in by the user
 
@@ -22,6 +22,8 @@ Lastly, I found a simple templating function online at [http://jsforallof.us/201
 ## Issues
 
 I ran into a few issues when it comes to mobile testing. The Google Places API Key that I was provided with doesn't allow for anything other than Desktops to use the API. If you try to view this through a mobile-browser, the request will be denied (but the site is styled to be optimized for mobile :wink:)
+
+*EDIT*: I found out it was only during local development, once I pushed to Github, I was able to use the application within a mobile browser.
 
 ## Next Steps
 
