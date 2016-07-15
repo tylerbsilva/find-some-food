@@ -128,6 +128,18 @@ function SearchForm() {
 
 		if (input instanceof google.maps.LatLng) {
 			location = input;
+			service.nearbySearch({
+				location: location,
+				radius: '2000',
+				type: ['restaurant']
+			}, function(data, status) {
+				if (status !== "OK") {
+					loading.className = 'loading-' + false;
+					new Error("Google Places Status: " + status);
+					return alert("Something's wrong, please try again!\r\nStatus: " + status);
+				}
+				return callback(data, status, location);
+			});
 		} else if (typeof input === "string") {
 			geocoder.geocode({
 				address: input
@@ -138,23 +150,22 @@ function SearchForm() {
 					return alert("Something's wrong, please try again!\r\nStatus: " + status);
 				}
 				location = data[0].geometry.location;
+				service.nearbySearch({
+					location: location,
+					radius: '2000',
+					type: ['restaurant']
+				}, function(data, status) {
+					if (status !== "OK") {
+						loading.className = 'loading-' + false;
+						new Error("Google Places Status: " + status);
+						return alert("Something's wrong, please try again!\r\nStatus: " + status);
+					}
+					return callback(data, status, location);
+				});
 			});
 		} else {
 			throw new Error("SearchForm.handleSubmit: Error in input ("+input+")");
 		}
-
-		service.nearbySearch({
-			location: location,
-			radius: '2000',
-			type: ['restaurant']
-		}, function(data, status) {
-			if (status !== "OK") {
-				loading.className = 'loading-' + false;
-				new Error("Google Places Status: " + status);
-				return alert("Something's wrong, please try again!\r\nStatus: " + status);
-			}
-			return callback(data, status, location);
-		});
 	}; // END HANDLE SUBMIT
 	function geocodeAddress(addressString, callback) {
 		geocoder.geocode({
