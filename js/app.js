@@ -103,6 +103,7 @@ function Place(data) {
 	if (!data) throw TypeError("Place: No data for Place constructor");
 	var DATA = data;
 	DATA.isOpen = data.opening_hours !== undefined ? data.opening_hours.open_now : false;
+	DATA.rating = data.rating !== undefined ? data.rating : '-';
 
 	function getData() {
 		return DATA;
